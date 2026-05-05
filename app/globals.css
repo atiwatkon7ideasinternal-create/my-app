@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8fc;
+  --foreground: #0f172a;
+  --brand: #4f46e5;
+  --brand-2: #7c3aed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-thai), var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1020;
+    --foreground: #e6e9f2;
   }
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-thai), var(--font-geist-sans), system-ui, "Segoe UI",
+    Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle background pattern */
+body {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.06) 0, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.05) 0, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Card primitive */
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 4px 16px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Inputs */
+.input,
+.select {
+  width: 100%;
+  background: white;
+  border: 1px solid rgb(226, 232, 240);
+  border-radius: 0.625rem;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.label {
+  font-size: 0.75rem;
+  color: rgb(71, 85, 105);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+/* Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.625rem;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.42);
+}
+.btn-ghost {
+  background: transparent;
+  color: rgb(71, 85, 105);
+}
+.btn-ghost:hover {
+  background: rgb(241, 245, 249);
+}
+.btn-danger {
+  color: rgb(225, 29, 72);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.375rem;
+}
+.btn-danger:hover {
+  background: rgb(255, 241, 242);
+}
+
+/* Table */
+.tbl {
+  width: 100%;
+  font-size: 0.875rem;
+}
+.tbl thead th {
+  background: rgb(248, 250, 252);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: rgb(71, 85, 105);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tbl tbody td {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid rgb(241, 245, 249);
+  vertical-align: middle;
+}
+.tbl tbody tr:hover {
+  background: rgb(248, 250, 252);
 }
