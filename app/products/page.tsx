@@ -96,7 +96,7 @@ export default async function ProductsPage() {
                               : "bg-rose-50 text-rose-700"
                           }`}
                         >
-                          {baht(margin)} ({marginPct.toFixed(0)}%)
+                          {baht(margin)} ({marginPct.toFixed(2)}%)
                         </span>
                       </td>
                       <td className="text-right">

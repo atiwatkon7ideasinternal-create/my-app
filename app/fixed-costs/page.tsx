@@ -108,7 +108,7 @@ export default async function FixedCostsPage() {
                         {periodLabel[c.period] || c.period}
                       </span>
                     </td>
-                    <td className="text-slate-500">{c.note || "-"}</td>
+                    <td data-testid="fc-note" className="text-slate-500">{c.note || "-"}</td>
                     <td className="text-slate-500 text-xs">
                       {formatDate(c.created_at)}
                     </td>
