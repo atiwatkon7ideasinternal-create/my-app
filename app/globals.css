@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8fc;
-  --foreground: #0f172a;
-  --brand: #4f46e5;
-  --brand-2: #7c3aed;
+  --background: #fff7f7;
+  --foreground: #1a0a0a;
+  --brand: #dc2626;
+  --brand-2: #b91c1c;
 }
 
 @theme inline {
@@ -33,14 +33,14 @@ body {
 /* Subtle background pattern */
 body {
   background-image:
-    radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.06) 0, transparent 40%),
-    radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.05) 0, transparent 40%);
+    radial-gradient(at 0% 0%, rgba(220, 38, 38, 0.07) 0, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(185, 28, 28, 0.05) 0, transparent 40%);
   background-attachment: fixed;
 }
 
 /* Card primitive */
 .card {
-  background: white;
+  background-color: white;
   border-radius: 1rem;
   box-shadow:
     0 1px 2px rgba(15, 23, 42, 0.04),
@@ -63,7 +63,7 @@ body {
 .select:focus {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.18);
 }
 
 .label {
@@ -90,11 +90,11 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
   color: white;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
 }
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.42);
+  box-shadow: 0 8px 22px rgba(220, 38, 38, 0.42);
 }
 .btn-ghost {
   background: transparent;
@@ -136,4 +136,86 @@ body {
 }
 .tbl tbody tr:hover {
   background: rgb(248, 250, 252);
+}
+
+/* Print: produce clean PDFs via browser "Save as PDF" */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: #0f172a;
+    font-size: 12px;
+  }
+
+  /* Hide app chrome */
+  aside,
+  header.md\:hidden,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset main layout to full width */
+  main {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  body > div,
+  body {
+    display: block !important;
+  }
+
+  /* Cards: flatten for print */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid rgb(226, 232, 240) !important;
+    border-radius: 0.5rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Tables stay together where possible */
+  .tbl thead {
+    display: table-header-group;
+  }
+  .tbl tr,
+  .tbl td,
+  .tbl th {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure gradient/colored hero cards print their colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide form controls / action buttons during print */
+  .btn,
+  button.no-print,
+  input,
+  select,
+  textarea {
+    /* keep readable in case of static labels — only hide actual buttons */
+  }
+  .btn-primary,
+  .btn-ghost,
+  .btn-danger {
+    display: none !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
 }

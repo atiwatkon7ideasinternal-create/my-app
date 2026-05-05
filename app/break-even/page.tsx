@@ -56,7 +56,7 @@ export default async function BreakEvenPage({
         subtitle="Break-Even Point — ขายให้ได้กี่ชิ้นถึงจะคุ้มทุน?"
       />
 
-      <div className="card p-6 bg-gradient-to-r from-slate-900 via-indigo-900 to-violet-900 text-white">
+      <div className="card p-6 bg-gradient-to-r from-rose-700 via-red-700 to-red-900 text-white">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
           <div>
             <p className="text-xs uppercase tracking-widest opacity-70">สูตรคำนวณ</p>
@@ -77,7 +77,7 @@ export default async function BreakEvenPage({
 
       <section className="card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded">
+          <span className="bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded">
             โหมดที่ 1
           </span>
           <h2 className="font-semibold text-lg">เลือกจากสินค้าจริงในระบบ</h2>
@@ -112,7 +112,7 @@ export default async function BreakEvenPage({
 
       <section className="card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <span className="bg-violet-100 text-violet-700 text-xs font-bold px-2.5 py-1 rounded">
+          <span className="bg-red-100 text-red-700 text-xs font-bold px-2.5 py-1 rounded">
             โหมดที่ 2
           </span>
           <h2 className="font-semibold text-lg">กำหนดค่าเอง</h2>
@@ -195,7 +195,7 @@ function BreakEvenResultView({ r }: { r: BreakEvenResult }) {
         <InfoBox
           label="Contribution Margin"
           value={baht(r.contribution_margin_per_unit)}
-          color="violet"
+          color="rose"
         />
       </div>
 
@@ -235,7 +235,7 @@ function BreakEvenResultView({ r }: { r: BreakEvenResult }) {
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm">
               <p className="font-semibold mb-1">
                 Contribution Margin Ratio:{" "}
-                <span className="text-violet-700">
+                <span className="text-rose-700">
                   {(r.contribution_margin_ratio * 100).toFixed(2)}%
                 </span>
               </p>
@@ -255,7 +255,7 @@ const colorMap: Record<string, string> = {
   emerald: "border-emerald-200 bg-emerald-50",
   amber: "border-amber-200 bg-amber-50",
   sky: "border-sky-200 bg-sky-50",
-  violet: "border-violet-200 bg-violet-50",
+  rose: "border-rose-200 bg-rose-50",
 };
 
 function InfoBox({

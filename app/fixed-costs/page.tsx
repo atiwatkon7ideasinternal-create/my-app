@@ -22,7 +22,7 @@ export default async function FixedCostsPage() {
         subtitle="Fixed Costs — ค่าใช้จ่ายที่จ่ายเท่าเดิมไม่ว่าขายได้กี่ชิ้น เช่น ค่าเช่า เงินเดือน"
       />
 
-      <div className="card p-6 bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-600 text-white">
+      <div className="card p-6 bg-gradient-to-br from-rose-500 via-red-600 to-red-800 text-white">
         <p className="text-sm opacity-90">ต้นทุนคงที่รวมทั้งหมด</p>
         <p className="text-4xl font-bold mt-2">{baht(total)}</p>
         <p className="text-xs opacity-80 mt-1">

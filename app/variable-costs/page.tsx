@@ -108,7 +108,7 @@ export default async function VariableCostsPage() {
                       <span
                         className={`text-xs px-2 py-0.5 rounded ${
                           c.product_id == null
-                            ? "bg-violet-100 text-violet-700"
+                            ? "bg-rose-100 text-rose-700"
                             : "bg-slate-100 text-slate-700"
                         }`}
                       >

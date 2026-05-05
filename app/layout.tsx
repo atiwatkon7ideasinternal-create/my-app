@@ -34,14 +34,16 @@ export default function RootLayout({
       lang="th"
       className={`${geistSans.variable} ${geistMono.variable} ${thaiSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full md:flex md:items-stretch">
         <Nav />
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
-          {children}
-        </main>
-        <footer className="text-center text-xs text-slate-400 py-6">
-          © {new Date().getFullYear()} · ระบบบริหารธุรกิจซื้อมาขายไป
-        </footer>
+        <div className="flex-1 min-w-0 flex flex-col">
+          <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+            {children}
+          </main>
+          <footer className="text-center text-xs text-slate-400 py-6">
+            © {new Date().getFullYear()} · ระบบบริหารธุรกิจซื้อมาขายไป
+          </footer>
+        </div>
       </body>
     </html>
   );

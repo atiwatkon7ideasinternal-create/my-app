@@ -35,14 +35,14 @@ export default async function SalesPage() {
         <div
           className={`card p-5 ${
             totalProfit >= 0
-              ? "bg-gradient-to-br from-indigo-50 to-violet-50"
-              : "bg-gradient-to-br from-rose-50 to-pink-50"
+              ? "bg-gradient-to-br from-rose-50 to-red-100"
+              : "bg-gradient-to-br from-slate-50 to-slate-100"
           }`}
         >
           <p className="text-xs text-slate-500">กำไรขั้นต้นรวม</p>
           <p
             className={`text-2xl font-bold mt-1 ${
-              totalProfit >= 0 ? "text-indigo-700" : "text-rose-700"
+              totalProfit >= 0 ? "text-rose-700" : "text-slate-700"
             }`}
           >
             {baht(totalProfit)}

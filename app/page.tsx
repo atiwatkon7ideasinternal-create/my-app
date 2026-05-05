@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getSummary } from "@/services/analyticsService";
 import { getProducts } from "@/services/productService";
 import { baht, num } from "@/lib/format";
+import ExportPdfButton from "@/components/ExportPdfButton";
 
 export default async function DashboardPage() {
   const [summary, products] = await Promise.all([getSummary(), getProducts()]);
@@ -11,11 +12,17 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      <header>
-        <h1 className="text-3xl font-bold tracking-tight">ภาพรวมธุรกิจ</h1>
-        <p className="text-sm text-slate-500 mt-1">
-          สรุปยอดขาย ต้นทุน กำไร และสถานะสต็อกสินค้าแบบเรียลไทม์
-        </p>
+      <header className="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">
+            <span className="inline-block w-1.5 h-6 bg-red-600 rounded-sm align-middle mr-2.5" />
+            ภาพรวมธุรกิจ
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            สรุปยอดขาย ต้นทุน กำไร และสถานะสต็อกสินค้าแบบเรียลไทม์
+          </p>
+        </div>
+        <ExportPdfButton />
       </header>
 
       {!summary ? (
@@ -54,8 +61,8 @@ export default async function DashboardPage() {
               icon={summary.net_profit >= 0 ? "✨" : "📉"}
               gradient={
                 summary.net_profit >= 0
-                  ? "from-indigo-500 to-violet-600"
-                  : "from-rose-500 to-pink-600"
+                  ? "from-rose-500 to-red-700"
+                  : "from-slate-600 to-slate-800"
               }
             />
           </div>
@@ -82,7 +89,7 @@ export default async function DashboardPage() {
             </div>
             <Link
               href="/products"
-              className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+              className="text-sm text-rose-600 hover:text-rose-800 font-medium"
             >
               จัดการ →
             </Link>
@@ -127,7 +134,7 @@ export default async function DashboardPage() {
             </div>
             <Link
               href="/purchases"
-              className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+              className="text-sm text-rose-600 hover:text-rose-800 font-medium"
             >
               ซื้อเข้า →
             </Link>

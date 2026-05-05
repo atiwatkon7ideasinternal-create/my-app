@@ -16,7 +16,7 @@ export default async function ProductsPage() {
 
       <section className="card p-6">
         <h2 className="font-semibold mb-4 flex items-center gap-2">
-          <span className="text-indigo-600">+</span> เพิ่มสินค้าใหม่
+          <span className="text-rose-600">+</span> เพิ่มสินค้าใหม่
         </h2>
         <form
           action={addProductAction}
