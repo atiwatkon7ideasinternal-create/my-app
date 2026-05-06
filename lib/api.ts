@@ -1,6 +1,6 @@
 // lib/api.ts
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
+  process.env.NEXT_PUBLIC_API_URL || "https://backend-5-7b3r.onrender.com";
 
 export async function fetchAPI<T>(
   path: string,

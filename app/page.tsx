@@ -29,9 +29,10 @@ export default async function DashboardPage() {
         <div className="card p-5 border-l-4 border-rose-500">
           <p className="font-semibold text-rose-700">⚠️ เชื่อมต่อ backend ไม่ได้</p>
           <p className="text-sm text-slate-600 mt-1">
-            กรุณารัน <code className="bg-slate-100 px-1.5 py-0.5 rounded">node index.js</code>{" "}
-            ใน <code className="bg-slate-100 px-1.5 py-0.5 rounded">/Users/atiwat/backend</code>{" "}
-            (port 5001)
+            ไม่สามารถเรียก API ได้ที่{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded">
+              {process.env.NEXT_PUBLIC_API_URL || "https://backend-5-7b3r.onrender.com"}
+            </code>
           </p>
         </div>
       ) : (
