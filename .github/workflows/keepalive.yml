@@ -2,24 +2,39 @@ name: Keep Render alive
 
 on:
   schedule:
-    # GitHub Actions cron has an effective minimum of ~5 minutes,
-    # which is still well under Render's 15-minute idle timeout.
+    # GitHub cron's smallest unit is 1 minute; the actual scheduling
+    # has a ~5-minute effective minimum. We schedule every 5 minutes
+    # and let each run self-loop, pinging every 45 seconds for ~5 min,
+    # so the effective interval is 45 seconds.
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 6
     steps:
-      - name: Ping services
+      - name: Ping every 45s for ~5 minutes
         run: |
+          set -u
           urls=(
             "https://backend-5-7b3r.onrender.com/products"
           )
-          for url in "${urls[@]}"; do
-            echo "→ $url"
-            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 "$url" || echo "000")
-            echo "  status: $code"
-            [ "$code" = "200" ] || echo "  (non-200, but service was woken)"
+          interval=45
+          # Run for 4m30s so the next scheduled run can pick up cleanly.
+          end=$((SECONDS + 270))
+          tick=0
+          while [ "$SECONDS" -lt "$end" ]; do
+            tick=$((tick + 1))
+            ts=$(date -u +%H:%M:%S)
+            for url in "${urls[@]}"; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$url" || echo "000")
+              echo "[$ts] tick=$tick $url -> $code"
+            done
+            # Sleep only if there is enough budget for another iteration.
+            if [ $((SECONDS + interval)) -lt "$end" ]; then
+              sleep "$interval"
+            else
+              break
+            fi
           done
